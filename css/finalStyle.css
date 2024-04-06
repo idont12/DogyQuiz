@@ -760,3 +760,9 @@ div#ProblemMes {
 #QuizEnd div#ProblemMes, #QuestionPlayMode div#ProblemMes{
     display: none;
 }
+
+@media (pointer:none), (pointer:coarse) {
+    #DogOptionContainer{
+    padding-right: 10pt;
+    }
+}
