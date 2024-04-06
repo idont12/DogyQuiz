@@ -1,0 +1,761 @@
+﻿:root {
+    --BorderRadius: 6pt;
+    --OrengeColor: #FFB155;
+    --DarkGreen: #3F4F20;
+    --GreenColor: #D2E6A1;
+    --DropShasowSetting: #0000003d 1px 3px 5px;
+    --correctColor: #66D987;
+    --incorrectColor: #FF6E4B;
+    --SelectedDogButtonSize: 40vh;
+    --SelectedDogButtonPosition: -50px;
+    --SelectedDogButtonOutline: 11pt;
+    --SelectedDogButtonLeft: 50%;
+    --smallFontSize: 10pt;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+    transition: all 300ms;
+}
+
+.QuizOptionButtenCon label, .QuizOptionWithAge label, .QuizOptionWithAge label *, .QuizOptionButtenCon label *{
+    transition: all 0ms;
+}
+body {
+    font-family: "Rubik", sans-serif;
+    direction: ltr;
+    margin: 20px;
+    max-height: 100vh;
+    height: calc(100vh - 40px);
+    display: flex;
+    flex-direction: column;
+    background-image: url(../img/Elements/Background.jpg);
+    background-size: cover;
+}
+
+h1 {
+    color: var(--OrengeColor);
+    font-weight: 800;
+    font-size: 28pt;
+    text-align: center;
+    margin-bottom: 4.5pt;
+}
+
+h2 {
+    color: var(--DarkGreen);
+    font-weight: Bold;
+    font-size: 15pt;
+    text-align: center;
+}
+
+.disableAllBut > *, .disableNext {
+    pointer-events: none;
+}
+
+.disableNext {
+    background-color: gray;
+}
+
+#FinalScreen{
+    text-align:center;
+}
+/*כפתור שליחה*/
+.submitButton {
+    background-color: var(--OrengeColor);
+    color: black;
+    box-shadow: var(--DropShasowSetting);
+    border-radius: var(--BorderRadius);
+    border: none;
+    padding: 10pt;
+    width: 70vw;
+    display: block;
+    margin: auto;
+    font-weight: 800;
+    margin-top: 13pt;
+    text-decoration: none;
+    text-align: center;
+    margin-bottom: 5pt;
+}
+
+.submitButton.disableNext{
+    background-color:#CECECE;
+    box-shadow:none;
+
+}
+
+/*כפתור לבחירת כלב*/
+#ChooseDogButton {
+    background: none;
+    border: none;
+    margin: auto;
+    display: block;
+    top: var(--SelectedDogButtonPosition);
+    position: absolute;
+    left: var(--SelectedDogButtonLeft);
+    transform: translateX(-50%);
+}
+#ChooseDogButton button {
+    box-shadow: var(--DropShasowSetting);
+    border-radius: 100%;
+}
+
+#SelectedDogImg {
+    HEIGHT: var(--SelectedDogButtonSize);
+    border-radius: 10000px;
+    outline: solid var(--SelectedDogButtonOutline) var(--GreenColor);
+    outline-offset: calc(var(--SelectedDogButtonOutline) * -1);
+    box-shadow: var(--DropShasowSetting);
+    transition: all 900ms cubic-bezier(0.48, -0.29, 0.46, 1.61);
+}
+
+#ChooseDogButton:before {
+    content: "Click to select a dog type";
+    top: 80%;
+    position: absolute;
+    rotate: 5deg;
+    width: 8em;
+    left: 0px;
+    font-weight: 500;
+    font-size: 14pt;
+    background-color: var(--GreenColor);
+    padding: 5px 10px;
+    border-radius: var(--BorderRadius);
+    z-index:1;
+}
+
+ #ChooseDogButton:after {
+    content: "";
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-image: url(../Img/Elements/Arrow.svg);
+    background-repeat: no-repeat;
+    bottom: 3.5em;
+    left: 0px;
+    rotate: 35deg;
+}
+
+#QuestionPlayMode #ChooseDogButton:after, #QuestionPlayMode #ChooseDogButton:before, #QuizEnd #ChooseDogButton:before, #QuizEnd #ChooseDogButton:after {
+    display: none !important;
+}
+
+#ChooseDogSpaceTaker {
+    min-height: calc(var(--SelectedDogButtonSize) + var(--SelectedDogButtonPosition) );
+}
+
+/*דרופדאון כלבים*/
+#DogOptionArea {
+    position: absolute;
+    padding-top: 12pt;
+    margin-top: 10pt;
+    width: 100%;
+    right: 0;
+    top: 32vh;
+    z-index: 2;
+    filter:drop-shadow(var(--DropShasowSetting));
+}
+
+#DogOptionContainer:before {
+    content: "";
+    height: 25pt;
+    width: 25pt;
+    background-color: var(--GreenColor);
+    position: absolute;
+    top: 0px;
+    rotate: 45deg;
+    z-index: -1;
+    align-self: center;
+    padding-right:0px;
+}
+
+#DogOptionContainer {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    margin: 0px 10px;
+    border-bottom: solid var(--GreenColor) 10pt;
+    border-top: solid var(--GreenColor) 10pt;
+    padding: 0px 10pt;
+    background-color: var(--GreenColor);
+    border-radius: var(--BorderRadius);
+    padding-right: 0px;
+}
+#DogOptionContainer input {
+    display: none;
+}
+
+    #DogOptionContainer label {
+        display: flex;
+        width: 100%;
+        height: 5em;
+        box-shadow: var(--DropShasowSetting);
+        border: none;
+        border-radius: var(--BorderRadius);
+        background-color: #ecf4dd;
+        overflow: hidden;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px 10pt;
+    }
+
+
+
+#DogOptionContainer label {
+    width: 100%;
+}
+
+#DogOptionContainer label spen {
+    font-weight:500;
+}
+
+#DogOptionContainer img {
+    border: solid 4pt var(--GreenColor);
+    border-radius: 1000px;
+    background: white;
+    height: 120%;
+}
+
+#DogOptionArea #DogOptionContainer input[type="radio"]:checked ~ label, input[type="radio"]:checked ~ label {
+    background-color: var(--DarkGreen);
+    color: white;
+}
+
+input[type="radio"]:checked ~ label svg{
+    fill:white;
+}
+
+div#DogOptionContainer {
+    height: 50vh;
+    overflow: auto;
+}
+
+.hideDropDown {
+    display: none !important;
+}
+
+/*כפתורי בחירה - עיצוב קהה*/
+
+
+
+.QuizOptionButtenCon, .QuizOptionWithAge {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+/*.QuizOptionWithAge {
+    display: grid;
+    gap: 10px;
+}*/
+
+    .QuizOptionButtenCon input, .QuizOptionWithAge input {
+        display: none;
+    }
+.QuizOptionButtenCon label, .QuizOptionWithAge label {
+    background-color: var(--GreenColor);
+    border-radius: var(--BorderRadius);
+    width: 100%;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    color: var(--DarkGreen);
+    font-weight: 700;
+    box-shadow: var(--DropShasowSetting);
+    font-size: var(--smallFontSize);
+    padding: 8px;
+}
+
+    .QuizOptionWithAge label > div{
+        line-height: 0.9em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .QuizOptionButtenCon label>span{
+        align-self: center;
+    }
+
+    .QuizOptionWithAge lable, .QuizOptionButtenCon label.SpaceAround {
+    justify-content: space-around;
+}
+
+
+    .QuizOptionWithAge span:first-child {
+        margin-top: 5px;
+    }
+.QuizOptionWithAge .ageText {
+    font-weight: 400;
+    font-size: 8pt;
+    display: block;
+}
+.QuizOptionWithAge svg {
+    fill: var(--DarkGreen);
+    height: 100%;
+}
+
+fieldset legend {
+    font-weight: 500;
+    font-size: 13pt;
+    margin: 0px;
+    margin-top: 10pt;
+}
+
+/*כפתורים תשובות ומסיכים*/
+#AnswerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+    #AnswerContainer > button{
+        display: block;
+        width: 100%;
+        height: 4em;
+        box-shadow: var(--DropShasowSetting);
+        border: none;
+        border-radius: var(--BorderRadius);
+        background-color: #ecf4dd;
+    }
+    #AnswerContainer.disableAllBut button {
+        box-shadow: none !important;
+        background-color: lightgray;
+    }
+/*currectAnswer*/
+.pickedAnswertrue {
+    transition: all cubic-bezier(0.52, -0.03, 0.7, 1.84) 800ms, filter 0s !important;
+    transform: rotateX(360deg) scale(1);
+    background-color: var(--correctColor) !important;
+}
+.showCurrect {
+    transition: cubic-bezier(0.52, -0.03, 0.7, 1.84) 800ms 400ms, filter 0s !important;
+    background-color: var(--correctColor) !important;
+}
+/*WoungAnswer*/
+.pickedAnswerfalse {
+    transition: cubic-bezier(0.52, -0.03, 0.7, 1.84) 800ms, filter 0s !important;
+    transform: rotateX(360deg) scale(1);
+    background-color: var(--incorrectColor) !important;
+}
+
+    /*Questions*/
+#QeustionBlock {
+    background-color: var(--GreenColor);
+    border-radius: var(--BorderRadius);
+    padding: 5px;
+    padding-left: 18vh;
+    margin-bottom: 40pt;
+}
+
+
+
+#QuestionPlayMode h2 {
+    display: none;
+}
+
+#QuestionPlayMode #ChooseDogSpaceTaker {
+    min-height: 7vh;
+}
+
+#DogTypeQeustion {
+    font-weight: 800;
+    font-size: 19pt;
+    color: var(--DarkGreenColor);
+}
+
+#QeustionBlock{
+    display:none;
+}
+
+#QuestionPlayMode #QeustionBlock {
+    display: block;
+}
+
+
+.bigText{
+    color:var(--DarkGreen);
+    font-size:25pt;
+    font-weight:800;
+}
+
+#Progrss {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+
+    top:100%;
+    left: 0px;
+}
+
+@media only screen and (max-width:400px) {
+    .QuizOptionWithAge {
+        grid-template-columns: 1fr;
+    }
+}
+@media only screen and (max-width:650px) {
+    #Progrss {
+
+        top: auto;
+    }
+
+    #QuestionPlayMode #ChooseDogButton {
+        top: calc(20px + 10pt + 5vh);
+        left: 85px;
+    }
+
+    #QuestionPlayMode h1 {
+        display: block;
+        position: absolute;
+        top: 10pt;
+        width: 100%;
+        text-align: center;
+        right: 0px;
+    }
+
+    #QuestionPlayMode #SelectedDogImg {
+        HEIGHT: 13vh;
+        outline: solid 5pt var(--GreenColor);
+        outline-offset: calc(5pt * -1);
+    }
+
+    /*final screen*/
+    #QuizEnd #ChooseDogSpaceTaker {
+        min-height: 50vh;
+    }
+
+    #FinalFeedback {
+        position: absolute;
+        background-color: var(--GreenColor);
+        width: 100%;
+        left: 0px;
+        text-align: center;
+        line-height: 1.5em;
+        padding: 25pt 0px 20pt 0px;
+        top: calc(var(--SelectedDogButtonSize) - 10pt + var(--SelectedDogButtonPosition));
+        z-index: -1;
+    }
+
+        #FinalFeedback p {
+            margin: 0px;
+        }
+}
+
+@media only screen and (min-width:650px) {
+    :root {
+        --smallFontSize: 14pt;
+    }
+    .QuizOptionButtenCon, .QuizOptionWithAge {
+        grid-template-columns: 150px 150px 150px;
+        justify-content: center;
+    }
+
+    #BottomBunner, #TopBunner {
+        background-color:var(--GreenColor);
+        width:100%;
+        z-index:-2;
+        position:absolute;
+        left:0px;
+    }
+    #TopBunner {
+        height: calc(5vh + 180pt + 20px);
+        top: 0px;
+    }
+    #BottomBunner {
+        height: 10vh;
+        bottom: 0px;
+    }
+
+    .submitButton {
+        width: 15em;
+    }
+
+    .page {
+        display: block;
+        margin: 0px auto;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -40%);
+        min-width: 480px;
+    }
+
+    #ChooseDogSpaceTaker {
+        min-height: calc(40pt + 20px);
+    }
+
+    #ChooseDogButton {
+        top: 3vh;
+        left: 150pt;
+    }
+    h1, h2, #QeustionBlock {
+        text-align: left;
+        margin-left: 280pt;
+        padding:0px;
+    }
+    h1 {
+        font-size: 35pt;
+    }
+    h2 {
+        font-size: 17pt;
+    }
+
+    #AnswerContainer {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    #AnswerContainer button {
+        flex-basis: calc(50% - 10px);
+    }
+
+    #DogOptionArea {
+        width: 500px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #DogOptionContainer:before {
+        left: 20px;
+    }
+    #ChooseDogButton:before {
+        left: -35pt;
+        top: 75%;
+    }
+    #ChooseDogButton:after {
+        bottom: 4em;
+        rotate: 28deg;
+    }
+
+    :not(#ChooseDogButton):not(.disableNext).clickable, #ChooseDogButton:not(.disableNext).clickable img {
+        transition: filter 0s;
+    }
+
+    :not(#ChooseDogButton):not(.disableNext).clickable:hover {
+        filter: brightness(108%);
+        
+    }
+    #ChooseDogButton:not(.disableNext).clickable:hover img {
+        filter: brightness(108%);
+    }
+
+    .infoBut:hover {
+        filter: brightness(200%);
+    }
+}
+/*ציר גלילה*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 10pt;
+}
+/* Track */
+::-webkit-scrollbar-track {
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #3f4f2066;
+    border-radius: 100px;
+    border: 5px solid var(--GreenColor);
+}
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #3f4f20;
+    }
+
+
+
+@media only screen and (min-width:700px) {
+    #TopBunner {
+        height: calc(5vh + 120pt + 20px);
+    }
+}
+    @media only screen and (min-width:1200px) {
+
+        #ChooseDogButton {
+            left: 25%;
+        }
+
+        h1, h2, #QeustionBlock {
+            margin-left: calc(25% + 22vh);
+        }
+
+        #DogOptionContainer {
+            -moz-border-radius-topleft: 0px;
+            border-top-left-radius: 0px;
+        }
+
+            #DogOptionContainer:before {
+                left: -20px;
+                height: 0px;
+                width: 0px;
+                border-top: 25pt solid var(--GreenColor);
+                border-left: 25pt solid transparent;
+                background-color: transparent;
+                rotate: 0deg;
+                top: 16px;
+            }
+
+        #ChooseDogButton:after {
+            rotate: 0deg;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        #ChooseDogButton:before {
+            width: 7em;
+            background-color: transparent;
+            padding: 0px;
+            top: 105%;
+            left: 0;
+        }
+    }
+
+/*borde page*/
+.hide{
+    display:none !important;
+}
+#BannerDiv {
+    width: 100%;
+    background-color: var(--GreenColor);
+    position: absolute;
+    left: 0px;
+    text-align: center;
+    padding: 15vh 0px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#BannerDiv h1{
+    margin: 0px;
+    text-align:center;
+}
+
+#BannerDiv div{
+    font-weight: 600;
+    width: min(70%, 500px);
+    margin: auto;
+}
+
+#tip {
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+.loader, .loader:before, .loader:after {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    animation-fill-mode: both;
+    animation: bblFadInOut 1.8s infinite ease-in-out;
+}
+
+.loader {
+    color: var(--DarkGreen);
+    font-size: 7px;
+    position: absolute;
+    text-indent: -9999em;
+    transform: translateZ(0);
+    animation-delay: -0.16s;
+    left: 50%;
+    top: 50%;
+    z-index:10;
+}
+
+    .loader:before,
+    .loader:after {
+        content: '';
+        position: absolute;
+        top: 0;
+    }
+
+    .loader:before {
+        left: -3.5em;
+        animation-delay: -0.32s;
+    }
+
+    .loader:after {
+        left: 3.5em;
+    }
+
+@keyframes bblFadInOut {
+    0%, 80%, 100% {
+        box-shadow: 0 2.5em 0 -1.3em
+    }
+
+    40% {
+        box-shadow: 0 2.5em 0 0
+    }
+}
+
+.popup>div {
+    z-index: 100;
+    position: absolute;
+    background: var(--GreenColor);
+    border-radius: var(--BorderRadius);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20pt;
+    border: solid 3pt var(--DarkGreen);
+}
+
+.popup {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background: #00000066;
+    top: 0px;
+    left: 0px;
+    z-index: 99;
+    backdrop-filter: blur(5px);
+}
+.smallFont{
+    font-size:8pt;
+}
+
+.infoBut {
+    position: absolute;
+    background: transparent;
+    border: solid 3px var(--DarkGreen);
+    color: var(--DarkGreen);
+    border-radius: 1000px;
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    font-weight: 700;
+    top: 20px;
+    right: 20px;
+}
+
+div#ProblemMes button {
+    border: 0px;
+    left: 10px;
+    color: var(--incorrectColor);
+    font-weight: 600;
+    background: #ffffff;
+    border-radius: 100px;
+    width: 1.6em;
+    height: 1.6em;
+    margin-right: 5pt;
+}
+
+div#ProblemMes {
+    position: absolute;
+    bottom: 0px;
+    width: min(63em, 90%);
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    background-color: var(--incorrectColor);
+    border-radius: 20px 20px 0px 0px;
+    padding: 10px 25px;
+    color: white;
+    font-weight: 600;
+}
+#ProblemMes select{
+    border: none;
+    margin: 1px 3px;
+    border-radius: 3px;
+}
+#QuizEnd div#ProblemMes, #QuestionPlayMode div#ProblemMes{
+    display: none;
+}

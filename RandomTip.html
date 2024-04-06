@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <title>תכנות 3 - שיעור API</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link href="css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/finalStyle.css" rel="stylesheet" />
+    <!-- JS -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="http://127.0.0.1:5500/Img/Dogs/0.svg">
+    <script>
+        function switchClassTo(myElement, myClass, willAdd) {
+            /*בדיקה האם צריך להוסיף את הקלאס או להוריד*/
+            if (willAdd) {
+                /*בדקיה האם לא הקלאס לא קיים*/
+                if (myElement.classList.contains(myClass) == false) {
+                    myElement.classList.add(myClass);
+                }
+            }
+            else {
+                /*בדקיה האם לא הקלאס קיים*/
+                if (myElement.classList.contains(myClass)) {
+                    myElement.classList.remove(myClass);
+                }
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+    <div class="popup hide">
+        <div>
+            <p><span class="bigText">There was a problem finding somthing to do ,</span><br />Please reload the page to resolve it.</p>
+            <button onclick="location.reload()" class="submitButton">Reload Page</button>
+        </div>
+
+    </div>
+
+    <div class="popup hide" onclick="switchClassTo(document.getElementsByClassName('popup')[1], 'hide', true)">
+        <div>
+            <p><span class="bigText">Credit</span></p>
+            <p>
+                This website created by <a target="_blank" href="https://www.linkedin.com/in/ariel-asias-a29706256/">Ariel Asias</a>, <a target="_blank" href="https://www.linkedin.com/in/einav-zaror/">Einav Zaror</a> and <a target="_blank" href="https://www.linkedin.com/in/yarden-zilberman-graphic-and-game-design/">Yarden Zilberman</a><br />
+                as part of a programing course at Hit.
+            </p>
+            <p class="smallFont">This website use pictures from <a href="https://www.freepik.com/" target="_blank">FreePic</a> ©</p>
+            <button onclick="switchClassTo(document.getElementsByClassName('popup')[1], 'hide', true)" class="submitButton clickable">Close Popup</button>
+        </div>
+
+    </div>
+
+    <button class="infoBut" onclick="switchClassTo(document.getElementsByClassName('popup')[1], 'hide', false)">i</button>
+
+    <div id="BannerDiv">
+        <h1>Bording Page</h1>
+        <div>
+            If you are still borde you can
+            <span id="tip">Start a band</span>
+            or generate another quiz by clicking on the button below.
+        </div>
+        <a class="submitButton clickable" href="./Quiz.html">Generate New Quiz</a>
+    </div>
+
+
+</body>
+</html>
